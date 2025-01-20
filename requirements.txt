@@ -2,3 +2,4 @@ notion_client
 flask
 flask_cors
 uvicorn[standard]
+gunicorn
