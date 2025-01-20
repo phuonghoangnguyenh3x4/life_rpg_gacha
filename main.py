@@ -15,7 +15,6 @@ PLAYER_DB_ID = os.getenv("PLAYER_DB_ID")
 notionPy = NotionPy(NOTION_API_KEY)
 game = Game(notionPy, STORE_DB_ID, PLAYER_DB_ID)
 
-players = game.get_players()
 player = None
 app = Flask(__name__)
 CORS(app)
@@ -29,7 +28,7 @@ def draw1card():
 
 @app.route('/get-collectables')
 def get_collectables():
-    global player
+    players = game.get_players()
     username = request.args.get('username')
     player = notionPy.search_by_title(players, username)[0] 
     return jsonify(game.get_player_collection(player))
