@@ -28,6 +28,7 @@ def draw1card():
 
 @app.route('/get-collectables')
 def get_collectables():
+    global player
     players = game.get_players()
     username = request.args.get('username')
     player = notionPy.search_by_title(players, username)[0] 
