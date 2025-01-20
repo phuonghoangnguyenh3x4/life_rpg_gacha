@@ -16,6 +16,9 @@ class Game:
         collection = self.search_collectables_by_titles(collection)
         return collection
 
+    def get_name(self, player):
+        return player.get("properties", {}).get("Name", {}).get("title", [{}])[0].get("text", {}).get("content")
+    
     def get_collectables(self):
         store = self.notionPy.get_database(self.STORE_DB_ID)
         collectables = self.__filter_collectable(store)
