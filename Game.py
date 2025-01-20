@@ -11,7 +11,7 @@ class Game:
         self.collectables = self.get_collectables()
 
     def get_player_collection(self, player):
-        collection = player['properties']['ColHelper']['formula']['string']
+        collection = player['properties']['CollectionHelper']['formula']['string']
         collection = collection.split('@')[1:]
         collection = self.search_collectables_by_titles(collection)
         return collection
@@ -113,12 +113,12 @@ class Game:
         return self.notionPy.update_property(player_id, "GachaCost", gacha_cost + cost)
 
     def __get_external_collectables_ids(self, player):
-        ids = player['properties']['ExternalCol']['relation']
+        ids = player['properties']['ExtCol']['relation']
         return [id['id'] for id in ids]
 
     def __update_external_collectables(self, player, random_collectables):
         related_page_ids = self.notionPy.get_page_ids(random_collectables)
-        relation_property_name = "ExternalCollectables"
+        relation_property_name = "ExtCol"
         player_id = self.notionPy.get_page_id(player)
         external_collectables_ids = self.__get_external_collectables_ids(player)
         return self.notionPy.link_to_relation(player_id, relation_property_name, external_collectables_ids + related_page_ids)
