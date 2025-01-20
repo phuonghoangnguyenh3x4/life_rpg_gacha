@@ -29,3 +29,6 @@ def draw1card():
 @app.route('/get-collectables')
 def get_collectables():
     return jsonify(game.get_player_collection(player))
+
+if __name__ == "__main__": 
+    app.run()
