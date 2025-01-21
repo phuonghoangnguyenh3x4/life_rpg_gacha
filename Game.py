@@ -11,6 +11,7 @@ class Game:
         self.collectables = None
 
     def get_player_collection(self, player):
+        self.collectables = self.get_collectables()
         collection = player['properties']['CollectionHelper']['formula']['string']
         collection = collection.split('@')[1:]
         collection = self.search_collectables_by_titles(collection)
