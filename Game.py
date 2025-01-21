@@ -8,7 +8,7 @@ class Game:
         self.notionPy = notionPy
         self.STORE_DB_ID = STORE_DB_ID
         self.PLAYER_DB_ID = PLAYER_DB_ID
-        self.collectables = self.get_collectables()
+        self.collectables = None
 
     def get_player_collection(self, player):
         collection = player['properties']['CollectionHelper']['formula']['string']
@@ -16,7 +16,7 @@ class Game:
         collection = self.search_collectables_by_titles(collection)
         return collection
 
-    def get_name(self, player):
+    def get_player_name(self, player):
         return player.get("properties", {}).get("Name", {}).get("title", [{}])[0].get("text", {}).get("content")
     
     def get_collectables(self):
@@ -33,6 +33,7 @@ class Game:
         ]
 
     def get_n_random_collectables(self, n):
+        self.collectables = self.get_collectables()
         random_collectables = self.__select_random_objects(self.collectables, n)
         return random_collectables
 

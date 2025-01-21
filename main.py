@@ -1,3 +1,4 @@
+import json
 from dotenv import load_dotenv
 import os
 from NotionPy import NotionPy
@@ -22,7 +23,7 @@ CORS(app)
 def draw1card():
     global player
     players = game.get_players()
-    username = game.get_name(player)
+    username = game.get_player_name(player)
     player = notionPy.search_by_title(players, username)[0] 
     random_collectables = game.get_n_random_collectables(1)
     game.buy_collectables(player, random_collectables)
